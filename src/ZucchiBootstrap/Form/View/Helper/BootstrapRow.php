@@ -327,7 +327,16 @@ class BootstrapRow extends FormRow
                     $options['prepend'] = (array) $options['prepend'];
                 }
                 foreach ($options['prepend'] AS $p) {
-                    $prepend .= '<span class="add-on">' . $escapeHtmlHelper($p) . '</span>';
+                    if (is_array($p)) {
+                        $prepend .= '<span class="add-on">';
+                        if (isset($p['icon']))
+                            $prepend .= '<i class="' . $escapeHtmlHelper($p['icon']) . '"></i> ';
+                        if (isset($p['text']))
+                            $prepend .= $escapeHtmlHelper($p['text']);
+                        $prepend .= '</span>';
+                    } else {
+                        $prepend .= '<span class="add-on">' . $escapeHtmlHelper($p) . '</span>';
+                    }
                 }
             }
             if (isset($options['append'])) {
@@ -336,7 +345,16 @@ class BootstrapRow extends FormRow
                     $options['append'] = (array) $options['append'];
                 }
                 foreach ($options['append'] AS $a) {
-                    $append .= '<span class="add-on">' . $escapeHtmlHelper($a) . '</span>';
+                    if (is_array($a)) {
+                        $append .= '<span class="add-on">';
+                        if (isset($a['icon']))
+                            $append .= '<i class="' . $escapeHtmlHelper($a['icon']) . '"></i> ';
+                        if (isset($a['text']))
+                            $append .= $escapeHtmlHelper($a['text']);
+                        $append .= '</span>';
+                    } else {
+                        $append .= '<span class="add-on">' . $escapeHtmlHelper($a) . '</span>';
+                    }
                 }
             }
 
